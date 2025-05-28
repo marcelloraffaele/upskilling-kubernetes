@@ -1,0 +1,20 @@
+$AKS_RESOURCE_GROUP="upskilling-k8s-rg"
+$LOCATION="italynorth"
+# The minimal VM size recommended for AKS worker nodes is Standard_B2s, which provides 2 vCPUs and 4 GiB RAM;
+# For production AKS clusters, the recommended VM sizes is at least 2 vCPUs and 8 GiB RAM, such as Standard_D2s_v3 or Standard_DS2_v2.
+# [AKS node size recommendations](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
+$VM_SKU="Standard_B2s"
+$AKS_NAME="upskilling-aks"
+$NODE_COUNT="2"
+
+az group create --location $LOCATION `
+    --resource-group $AKS_RESOURCE_GROUP
+
+az aks create --node-count $NODE_COUNT `
+    --generate-ssh-keys `
+    --node-vm-size $VM_SKU `
+    --name $AKS_NAME `
+    --resource-group $AKS_RESOURCE_GROUP
+
+az aks get-credentials --name $AKS_NAME `
+    --resource-group $AKS_RESOURCE_GROUP
