@@ -28,3 +28,5 @@ az acr create --resource-group $AKS_RESOURCE_GROUP `
 # attach the ACR to the AKS cluster
 az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --attach-acr $ACR_NAME
 
+# example of importing an image into the ACR
+#az acr import --name $ACR_NAME --source docker.io/library/nginx:latest --image nginx:v1
