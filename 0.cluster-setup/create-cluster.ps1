@@ -18,3 +18,13 @@ az aks create --node-count $NODE_COUNT `
 
 az aks get-credentials --name $AKS_NAME `
     --resource-group $AKS_RESOURCE_GROUP
+
+# create an Azure Container Registry (ACR) to store container images
+$ACR_NAME="acrupskilling"
+az acr create --resource-group $AKS_RESOURCE_GROUP `
+    --name $ACR_NAME `
+    --sku Basic
+
+# attach the ACR to the AKS cluster
+az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --attach-acr $ACR_NAME
+
