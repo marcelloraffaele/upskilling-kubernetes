@@ -1,5 +1,5 @@
 ```powershell
-$NS = "labels-tutorial"
+$NS = "labels-upskilling"
 kubectl create namespace $NS
 
 kubectl apply -n $NS -f .\1-simple-deployment.yaml

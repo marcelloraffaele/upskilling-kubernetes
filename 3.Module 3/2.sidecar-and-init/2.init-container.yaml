@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-with-init
+  labels:
+    app: frontend-with-init
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-with-init
+  template:
+    metadata:
+      labels:
+        app: frontend-with-init
+    spec:
+      # Init containers run before the main containers
+      initContainers:
+      - name: init-container
+        image: busybox
+        command: ["/bin/sh", "-c", "echo '<h1>Hello from Init Container</h1>' > /usr/share/nginx/html/index.html"]
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+      containers:
+      #main container
+      - name: frontend-with-init
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: html-volume
+          mountPath: /usr/share/nginx/html
+      #shared volume
+      volumes:
+      - name: html-volume
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-with-init
+  labels:
+    app: frontend-with-init
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: frontend-with-init
+  type: ClusterIP

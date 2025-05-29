@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      #main container
+      - name: frontend
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-log
+          mountPath: /var/log/nginx
+      #sidecar
+      - name: sidecar-container
+        image: busybox
+        command: ["sh", "-c", "tail -f /var/log/nginx/access.log"]
+        volumeMounts:
+        - name: nginx-log
+          mountPath: /var/log/nginx
+      #shared volume
+      volumes:
+      - name: nginx-log
+        emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: frontend
+  type: ClusterIP

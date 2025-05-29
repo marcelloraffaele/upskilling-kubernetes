@@ -1,5 +1,5 @@
 ```powershell
-$NS = "rs-tutorial"
+$NS = "rs-upskilling"
 kubectl create namespace $NS
 
 kubectl apply -n $NS -f .\1.simple-rs.yaml

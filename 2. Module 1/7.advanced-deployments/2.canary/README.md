@@ -1,7 +1,7 @@
 More info at https://www.cncf.io/wp-content/uploads/2020/08/CNCF-Presentation-Template-K8s-Deployment.pdf
 
 ```powershell
-$NS = "canary-tutorial"
+$NS = "canary-upskilling"
 kubectl create namespace $NS
 
 kubectl apply -n $NS -f .\hello-deploy-v1.yaml

@@ -1,6 +1,6 @@
 # ConfigMap
 ```powershell
-$NS = "cm-and-secret-tutorial"
+$NS = "cm-and-secret-upskilling"
 kubectl create namespace $NS
 
 kubectl apply -n $NS -f .\1-configmap.yaml

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+    project: mysql-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+        project: mysql-test
+    spec:
+      containers:
+      - name: database
+        image: mysql:9.3.0
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-secret
+              key: rootpassword
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+        ports:
+          - containerPort: 3306
+        volumeMounts:
+          - name: init-config
+            mountPath: "/docker-entrypoint-initdb.d"
+            readOnly: true
+          - name: mysql-persistent-storage
+            mountPath: /var/lib/mysql
+      volumes:
+        - name: init-config
+          configMap:
+            name: mysql-configmap
+            items:
+              - key: "init.sql"
+                path: "init.sql"
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
