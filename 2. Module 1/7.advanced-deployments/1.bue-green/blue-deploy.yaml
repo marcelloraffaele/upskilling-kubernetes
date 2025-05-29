@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       target: blue-deploy
+  template:
+    metadata:
+      name: blue-deploy
+      labels:
+        target: blue-deploy
+        color: blue
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+      - name: hello
+        image: 	ghcr.io/marcelloraffaele/hello:blue
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        imagePullPolicy: Always
+        
+

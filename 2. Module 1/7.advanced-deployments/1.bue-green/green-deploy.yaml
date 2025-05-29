@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+       target: green-deploy
+  template:
+    metadata:
+      name: green-deploy
+      labels:
+        target: green-deploy
+        color: green
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+      - name: hello
+        image: 	ghcr.io/marcelloraffaele/hello:green
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        imagePullPolicy: Always
+        
+

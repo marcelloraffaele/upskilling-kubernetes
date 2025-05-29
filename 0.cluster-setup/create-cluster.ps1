@@ -30,3 +30,7 @@ az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --attach-acr
 
 # example of importing an image into the ACR
 #az acr import --name $ACR_NAME --source docker.io/library/nginx:latest --image nginx:v1
+
+#kubectl config view
+#kubectl config get-contexts
+#kubectl config get-clusters
