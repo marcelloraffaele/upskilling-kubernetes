@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        env: dev
+    spec:
+      containers:
+        - name: frontend
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          # The kubelet uses startup probes to know when a container application has started
+          # Pings the port every 10 seconds.  
+          # Retries it upto 30 times or until it succeeds
+          startupProbe:
+            httpGet:
+              path: /
+              port: 80
+            failureThreshold: 1
+            periodSeconds: 15
+          # The kubelet uses readiness probes to know when a container is ready to start accepting traffic. .
+          # Start only AFTER the startupProbe has completed successfully
+          # Pings the path every 5 seconds.
+          # Retries it up 2 times or until it succeeds
+          readinessProbe:
+            tcpSocket:
+              port: 80
+            failureThreshold: 2
+            periodSeconds: 5
+            initialDelaySeconds: 30
+          # The kubelet uses liveness probes to know when to restart a container.
+          # Start only AFTER the startupProbe has completed successfully
+          # Pings the path every 5 seconds.
+          # Restarts the containers if the ping ever fails (no retries)
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            failureThreshold: 1
+            periodSeconds: 5
+            initialDelaySeconds: 15
+
+
+  
+  
