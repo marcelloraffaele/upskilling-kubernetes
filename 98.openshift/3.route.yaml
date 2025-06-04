@@ -6,7 +6,7 @@ spec:
   path: /
   to:
     kind: Service
-    name: frontend-service
+    name: frontend
     weight: 100
   port:
     targetPort: 8080
