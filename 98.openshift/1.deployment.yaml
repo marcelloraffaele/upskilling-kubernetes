@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: nginxinc/nginx-unprivileged
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: html-config
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+            - name: html-config
+              mountPath: /usr/share/nginx/html/styles.css
+              subPath: styles.css
+      volumes:
+        - name: html-config
+          configMap:
+            name: frontend
