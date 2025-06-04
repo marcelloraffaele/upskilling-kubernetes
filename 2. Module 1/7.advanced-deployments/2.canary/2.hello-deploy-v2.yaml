@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-deploy-v1
+  name: hello-deploy-v2
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
        app: hello
   template:
     metadata:
-      name: hello-deploy-v1
+      name: hello-deploy-v2
       labels:
         app: hello
-        versione: v1
+        versione: v2
     spec:
       nodeSelector:
         kubernetes.io/os: linux
       containers:
       - name: hello
-        image: 	ghcr.io/marcelloraffaele/hello:blue
+        image: 	ghcr.io/marcelloraffaele/hello:green
         ports:
         - containerPort: 8080
           protocol: TCP

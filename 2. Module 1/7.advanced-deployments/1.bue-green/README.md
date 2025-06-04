@@ -18,7 +18,7 @@ kubectl get service,deployment,pod -n $NS --show-labels
 kubectl apply -n $NS -f .\production-svc-green.yaml
 
 # portforwarding
-kubectl port-forward -n $NS svc/frontend-service 8080:80
+kubectl port-forward -n $NS service/production-svc 8080:8080
 ```
 
 

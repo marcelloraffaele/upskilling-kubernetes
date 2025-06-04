@@ -6,6 +6,8 @@ kubectl create namespace $NS
 
 ## Install a ready to use chart
 ```bash
+helm search repo mysql
+helm search repo redis
 helm search repo wordpress
 
 #default
