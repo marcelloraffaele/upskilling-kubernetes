@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - name: nginx
-#          image: nginx:latest
-          image: acrupskilling.azurecr.io/nginx:v1
+          image: nginx:latest
           ports:
             - containerPort: 80

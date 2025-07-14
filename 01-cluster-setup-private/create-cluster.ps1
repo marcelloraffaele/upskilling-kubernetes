@@ -175,7 +175,7 @@ az vm run-command invoke `
     --resource-group $AKS_RESOURCE_GROUP `
     --name $VM_NAME `
     --command-id RunShellScript `
-    --scripts @install_tools.sh
+    --scripts (Get-Content "install_tools.sh" -Raw)
 
 Remove-Item "install_tools.sh"
 
@@ -206,7 +206,7 @@ mkdir -p /home/$VM_USERNAME/.kube
 cat > /home/$VM_USERNAME/.kube/config << 'EOF'
 $KUBECONFIG_CONTENT
 EOF
-chown -R $VM_USERNAME:$VM_USERNAME /home/$VM_USERNAME/.kube
+chown -R $VM_USERNAME`:$VM_USERNAME /home/$VM_USERNAME/.kube
 chmod 600 /home/$VM_USERNAME/.kube/config
 "@
 
@@ -215,7 +215,7 @@ az vm run-command invoke `
     --resource-group $AKS_RESOURCE_GROUP `
     --name $VM_NAME `
     --command-id RunShellScript `
-    --scripts @copy_kubeconfig.sh
+    --scripts "copy_kubeconfig.sh"
 
 Remove-Item "copy_kubeconfig.sh"
 

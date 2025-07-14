@@ -35,12 +35,12 @@ Option 1: Azure Portal (Recommended)
 To access the management VM using Azure CLI and Bastion, run the following command from your local machine:
 
 ```sh
-az network bastion ssh \
-    --name upskilling-bastion \
-    --resource-group upskilling-k8s-private-rg \
-    --target-resource-id /subscriptions/$(az account show --query id -o tsv)/resourceGroups/upskilling-k8s-private-rg/providers/Microsoft.Compute/virtualMachines/kubectl-vm \
-    --auth-type ssh-key \
-    --username azureuser \
+az network bastion ssh `
+    --name upskilling-bastion `
+    --resource-group upskilling-k8s-private-rg `
+    --target-resource-id /subscriptions/$(az account show --query id -o tsv)/resourceGroups/upskilling-k8s-private-rg/providers/Microsoft.Compute/virtualMachines/kubectl-vm `
+    --auth-type ssh-key `
+    --username azureuser `
     --ssh-key ~/.ssh/id_rsa
 ```
 
