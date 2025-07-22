@@ -1,0 +1,25 @@
+namespace: app-dev
+resources:
+  - ../../base
+
+patches:
+  - target:
+      kind: Deployment
+      name: example-app
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 1
+      - op: add
+        path: /spec/template/metadata/labels/environment
+        value: dev
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: ghcr.io/marcelloraffaele/hello:under-construction
+  - target:
+      kind: Ingress
+      name: example-app
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: dev.example.local

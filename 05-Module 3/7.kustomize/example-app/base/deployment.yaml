@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app
+spec:
+  replicas: 1 # will be overridden by kustomize
+  selector:
+    matchLabels:
+      app: example-app
+  template:
+    metadata:
+      labels:
+        app: example-app # will be patched by kustomize
+    spec:
+      containers:
+        - name: example-app
+          image: ghcr.io/marcelloraffaele/hello:main
+          ports:
+            - containerPort: 8080

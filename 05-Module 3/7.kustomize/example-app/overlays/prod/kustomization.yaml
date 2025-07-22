@@ -1,0 +1,24 @@
+namespace: app-prod
+resources:
+  - ../../base
+patches:
+  - target:
+      kind: Deployment
+      name: example-app
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 3
+      - op: add
+        path: /spec/template/metadata/labels/environment
+        value: prod
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: ghcr.io/marcelloraffaele/hello:green
+  - target:
+      kind: Ingress
+      name: example-app
+    patch: |-
+      - op: replace
+        path: /spec/rules/0/host
+        value: prod.example.local

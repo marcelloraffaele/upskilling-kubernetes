@@ -25,6 +25,14 @@ kubectl get all -n $NS
 helm uninstall my-wordpress --namespace $NS
 ```
 
+## dry run
+```bash
+helm install myhello ./hello-chart --namespace $NS --dry-run
+
+helm install myhello ./hello-chart --namespace $NS -f hello-values.yaml --dry-run
+
+
+```
 
 ## Create your own chart
 ```bash
