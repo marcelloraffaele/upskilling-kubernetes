@@ -10,6 +10,9 @@ backend:
     port: 80
   ingress:
     enabled: false
+  env:
+  - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+    value: "InstrumentationKey=..."
 frontend:
   replicaCount: 1
   podLabels:
@@ -37,3 +40,8 @@ frontend:
     httpGet:
       path: /
       port: http
+  env:
+  - name: BACKEND_URL
+    value: "http://todo-app-backend.todo-app.svc.cluster.local:3000"
+  - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+    value: "InstrumentationKey=..."

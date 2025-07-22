@@ -121,3 +121,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+# Example environment variables for the container
+env:
+  - name: EXAMPLE_ENV_VAR
+    value: "example-value"
+  - name: ANOTHER_ENV_VAR
+    value: "another-value"

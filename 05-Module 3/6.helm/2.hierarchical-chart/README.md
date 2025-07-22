@@ -22,3 +22,6 @@ helm install todo-app ./fe-be-app --namespace $NS --dry-run
 $NS = "todo-app"
 kubectl create namespace $NS
 helm install todo-app ./fe-be-app --namespace $NS
+
+helm upgrade todo-app ./fe-be-app --namespace $NS
+```
