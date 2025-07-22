@@ -1,0 +1,39 @@
+backend:
+  replicaCount: 1
+  podLabels:
+    app: todo-app-be
+  image:
+    repository: ghcr.io/marcelloraffaele/todo-app-js-backend
+    tag: main
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: false
+frontend:
+  replicaCount: 1
+  podLabels:
+    app: todo-app-fe
+  image:
+    repository: ghcr.io/marcelloraffaele/todo-app-js-frontend
+    tag: main
+  service:
+    type: ClusterIP
+    port: 3000
+  ingress:
+    enabled: true
+    className: "webapprouting.kubernetes.azure.com"
+    hosts:
+      - host: todo-app-fe.local
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http
