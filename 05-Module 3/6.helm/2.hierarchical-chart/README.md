@@ -12,16 +12,23 @@ helm create backend
 
 # Dry run
 ```bash
-$NS = "todo-app"
+$NS = "note-app"
 kubectl create namespace $NS
-helm install todo-app ./fe-be-app --namespace $NS --dry-run
+helm install note-app ./fe-be-app --namespace $NS --dry-run
 ```
 
 # Run
 ```bash
-$NS = "todo-app"
+$NS = "note-app"
 kubectl create namespace $NS
-helm install todo-app ./fe-be-app --namespace $NS
+helm install note-app ./fe-be-app --namespace $NS
 
-helm upgrade todo-app ./fe-be-app --namespace $NS
+helm upgrade note-app ./fe-be-app --namespace $NS
+```
+
+# Clean up
+```bash
+$NS = "note-app"
+helm uninstall note-app --namespace $NS
+kubectl delete namespace $NS
 ```

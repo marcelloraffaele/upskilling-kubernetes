@@ -1,33 +1,40 @@
 backend:
   replicaCount: 1
   podLabels:
-    app: todo-app-be
+    app: note-app-be
   image:
-    repository: ghcr.io/marcelloraffaele/todo-app-js-backend
-    tag: main
+    repository: ghcr.io/marcelloraffaele/notes-api
+    tag: latest
   service:
     type: ClusterIP
-    port: 80
-  ingress:
-    enabled: false
-  env:
-  - name: APPLICATIONINSIGHTS_CONNECTION_STRING
-    value: "InstrumentationKey=..."
-frontend:
-  replicaCount: 1
-  podLabels:
-    app: todo-app-fe
-  image:
-    repository: ghcr.io/marcelloraffaele/todo-app-js-frontend
-    tag: main
-  service:
-    type: ClusterIP
-    port: 3000
+    port: 8080
   ingress:
     enabled: true
     className: "webapprouting.kubernetes.azure.com"
     hosts:
-      - host: todo-app-fe.local
+      - host: note-app-be.local
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls: []
+#  env:
+#  - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+#    value: "InstrumentationKey=..."
+frontend:
+  replicaCount: 1
+  podLabels:
+    app: note-app-fe
+  image:
+    repository: ghcr.io/marcelloraffaele/notes-ui
+    tag: b2d5e8a
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: true
+    className: "webapprouting.kubernetes.azure.com"
+    hosts:
+      - host: note-app-fe.local
         paths:
           - path: /
             pathType: ImplementationSpecific
@@ -41,7 +48,5 @@ frontend:
       path: /
       port: http
   env:
-  - name: BACKEND_URL
-    value: "http://todo-app-backend.todo-app.svc.cluster.local:3000"
-  - name: APPLICATIONINSIGHTS_CONNECTION_STRING
-    value: "InstrumentationKey=..."
+  - name: REACT_APP_API_URL
+    value: "http://note-app-be.local"
