@@ -32,3 +32,8 @@ $NS = "note-app"
 helm uninstall note-app --namespace $NS
 kubectl delete namespace $NS
 ```
+
+# Test
+
+http://note-app-be.local/swagger-ui/index.html
+http://note-app-fe.local
