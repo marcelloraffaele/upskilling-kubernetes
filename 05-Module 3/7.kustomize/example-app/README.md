@@ -1,9 +1,11 @@
 # dry run
 
 ```bash
-kubectl kustomize overlays/dev
+kubectl kustomize base > ./dry-run/base.yaml
 
-kubectl kustomize overlays/prod
+kubectl kustomize overlays/dev > ./dry-run/dev.yaml
+
+kubectl kustomize overlays/prod > ./dry-run/prod.yaml
 ```
 
 # Run

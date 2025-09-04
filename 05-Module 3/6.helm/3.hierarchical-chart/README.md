@@ -37,3 +37,8 @@ kubectl delete namespace $NS
 
 http://note-app-be.local/swagger-ui/index.html
 http://note-app-fe.local
+
+# helm test
+```bash
+ helm test note-app --namespace $NS --logs --timeout 5m
+ ```

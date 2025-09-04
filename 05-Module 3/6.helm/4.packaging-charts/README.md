@@ -63,3 +63,7 @@ helm search basicapprepo
 helm search repo basic-app-chart
 
 ``` 
+
+
+
+helm install test --namespace test basicapprepo/basic-app-chart --dry-run > tesy.yaml
