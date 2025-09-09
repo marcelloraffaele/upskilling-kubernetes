@@ -11,6 +11,7 @@ az k8s-configuration flux create -g $AKS_RESOURCE_GROUP -c $AKS_NAME -n $FLUX_CO
     --kustomization name=infra path=./infrastructure prune=true `
     --kustomization name=apps path=./apps/staging prune=true dependsOn=["infra"]
 
+az k8s-configuration flux show -g $AKS_RESOURCE_GROUP -c $AKS_NAME -n $FLUX_CONFIG_NAME -t managedClusters
 
-# az k8s-configuration flux delete --resource-group $AKS_RESOURCE_GROUP `
-#    --cluster-name $AKS_NAME --cluster-type managedClusters --name $FLUX_CONFIG_NAME
+az k8s-configuration flux delete --resource-group $AKS_RESOURCE_GROUP `
+    --cluster-name $AKS_NAME --cluster-type managedClusters --name $FLUX_CONFIG_NAME

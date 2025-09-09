@@ -24,9 +24,13 @@ $ACR_NAME="acrupskilling"
 az acr create --resource-group $AKS_RESOURCE_GROUP `
     --name $ACR_NAME `
     --sku Basic
+#    --enable-oidc-issuer --enable-workload-identity
 
 # attach the ACR to the AKS cluster
 az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --attach-acr $ACR_NAME
+
+# enable workload identity
+az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --enable-oidc-issuer --enable-workload-identity
 
 # example of importing an image into the ACR
 #az acr import --name $ACR_NAME --source docker.io/library/nginx:latest --image nginx:v1
