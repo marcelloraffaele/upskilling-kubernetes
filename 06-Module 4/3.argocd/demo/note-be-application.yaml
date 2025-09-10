@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: note-be
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: basic-app-chart
+    repoURL: https://marcelloraffaele.github.io/helm/charts/
+    targetRevision: 0.1.0
+    helm:
+      releaseName: note-be
+#
+# values
+#
+      valuesObject:
+        replicaCount: 1
+        podLabels:
+          app: note-app-be
+        image:
+          repository: ghcr.io/marcelloraffaele/notes-api
+          tag: latest
+        service:
+          type: ClusterIP
+          port: 8080
+        ingress:
+          enabled: true
+          className: "webapprouting.kubernetes.azure.com"
+          hosts:
+            - host: note-app-be2.local
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+        livenessProbe:
+          enabled: false
+        readinessProbe:
+          enabled: false
+# end values
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: note
