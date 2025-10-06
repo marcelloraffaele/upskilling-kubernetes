@@ -1,3 +1,5 @@
+############### AS for ../00.cluster-setup/01-create-cluster.ps1 ###############
+# Variables
 $AKS_RESOURCE_GROUP="upskilling-k8s-rg"
 $LOCATION="italynorth"
 # The minimal VM size recommended for AKS worker nodes is Standard_B2s, which provides 2 vCPUs and 4 GiB RAM;
@@ -26,15 +28,10 @@ az acr create --resource-group $AKS_RESOURCE_GROUP `
     --sku Basic
 #    --enable-oidc-issuer --enable-workload-identity
 
-# attach the ACR to the AKS cluster
-az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --attach-acr $ACR_NAME
-
 # enable workload identity
 az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --enable-oidc-issuer --enable-workload-identity
 
-# example of importing an image into the ACR
-#az acr import --name $ACR_NAME --source docker.io/library/nginx:latest --image nginx:v1
+# attach the ACR to the AKS cluster
+az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --attach-acr $ACR_NAME
 
-#kubectl config view
-#kubectl config get-contexts
-#kubectl config get-clusters
+
