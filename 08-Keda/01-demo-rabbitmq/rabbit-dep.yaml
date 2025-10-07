@@ -35,13 +35,13 @@ spec:
               mountPath: /var/lib/rabbitmq
             - name: rabbit-logs
               mountPath: /var/log/rabbitmq
-          resources:
-            requests:
-              cpu: 300m
-              memory: 256Mi
-            limits:
-              cpu: 500m
-              memory: 512Mi
+#          resources:
+#            requests:
+#              cpu: 300m
+#              memory: 256Mi
+#            limits:
+#              cpu: 500m
+#              memory: 512Mi
       volumes:
         - name: rabbit-data
           emptyDir: {}

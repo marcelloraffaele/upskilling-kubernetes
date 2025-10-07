@@ -21,6 +21,11 @@ kubectl apply -f keda-rabbit.yaml -n $NS
 # Observer increase in pod replicas.  Show HPA Info (i) panel.  Observe Scale Down Stabilization Window"
 kubectl get hpa -n $NS -w
 
+kubectl get scaledobjects -n $NS
+
+kubectl logs -f -n kube-system -l app=keda-operator
+
+
 # cleanup
 kubectl delete ns $NS
 ```

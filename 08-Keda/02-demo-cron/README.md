@@ -13,6 +13,10 @@ kubectl apply -f keda-cron.yaml -n $NS
 
 kubectl get hpa -n $NS -w
 
+kubectl get scaledobjects -n $NS
+
+kubectl logs -f -n kube-system -l app=keda-operator
+
 # cleanup
 kubectl delete ns $NS
 
