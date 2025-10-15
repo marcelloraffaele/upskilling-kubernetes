@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inflate2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: inflate2
+  template:
+    metadata:
+      labels:
+        app: inflate2
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: inflate2
+          image: nginx:alpine
+          resources:
+            requests:
+              cpu: 1
+      nodeSelector:
+        aks-karpenter: np2
