@@ -1,7 +1,7 @@
 apiVersion: karpenter.sh/v1
 kind: NodePool
 metadata:
-  name: nodepool2
+  name: karpenter-np2
   annotations:
     kubernetes.io/description: "General purpose NodePool for generic workloads"
 spec:
