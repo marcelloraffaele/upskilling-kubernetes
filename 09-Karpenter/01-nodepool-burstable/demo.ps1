@@ -20,10 +20,11 @@ kubectl apply -f nodepool-burstable.yaml
 
 kubectl get nodepool
 
-# Deploy sample Nginx deployment to trigger Karpenter autoprovisioning
-
-#kubectl create deployment nginx --image=nginx --replicas=1000
 kubectl apply -f deployment.yaml
+kubectl scale deployment demo-app --replicas=1
+
+kubectl scale deployment demo-app --replicas=2
+
 kubectl scale deployment demo-app --replicas=1
 
 

@@ -1,23 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: inflate2
+  name: fe-deploy
 spec:
   replicas: 0
   selector:
     matchLabels:
-      app: inflate2
+      app: fe-deploy
   template:
     metadata:
       labels:
-        app: inflate2
+        app: fe-deploy
     spec:
       terminationGracePeriodSeconds: 0
       containers:
-        - name: inflate2
+        - name: fe-deploy
           image: nginx:alpine
           resources:
             requests:
               cpu: 1
-      nodeSelector:
-        aks-karpenter: np2

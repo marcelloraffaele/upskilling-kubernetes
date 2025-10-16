@@ -33,4 +33,9 @@ spec:
       - key: karpenter.azure.com/sku-family
         operator: In
         values:
-        - D
+#        - B
+#      - key: karpenter.azure.com/sku-name
+#        operator: In
+#        values:
+#        - Standard_B2s
+#        

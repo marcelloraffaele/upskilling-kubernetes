@@ -1,6 +1,7 @@
 $NS = "karpenter-demo3"
 kubectl create namespace $NS
 kubectl apply -f deployment.yaml -n $NS
+kubectl apply -f deployment2.yaml -n $NS
 
 kubectl apply -f nodepool-1.yaml
 kubectl apply -f nodepool-2.yaml
@@ -8,7 +9,7 @@ kubectl apply -f nodepool-2.yaml
 
 kubectl scale deployment -n $NS inflate --replicas 3
 
-kubectl apply -f deployment2.yaml -n $NS
+kubectl get deployment -n $NS
 
 kubectl get nodepool
 kubectl get nodeclaims
