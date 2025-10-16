@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       labels:
-        aks-karpenter: demo
+        aks-karpenter: basic-np
     spec:
       expireAfter: Never
       nodeClassRef:

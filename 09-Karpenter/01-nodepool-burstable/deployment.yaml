@@ -1,23 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: inflate
+  name: demo-app
 spec:
   replicas: 0
   selector:
     matchLabels:
-      app: inflate
+      app: demo-app
   template:
     metadata:
       labels:
-        app: inflate
+        app: demo-app
     spec:
       terminationGracePeriodSeconds: 0
       containers:
-        - name: inflate
+        - name: demo-app
           image: nginx:alpine
           resources:
             requests:
-              cpu: 1
-      nodeSelector:
-        aks-karpenter: basic-np
+              cpu: 8

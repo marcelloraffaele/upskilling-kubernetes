@@ -22,9 +22,14 @@ kubectl get nodepool
 
 # Deploy sample Nginx deployment to trigger Karpenter autoprovisioning
 
-kubectl create deployment nginx --image=nginx --replicas=1000
+#kubectl create deployment nginx --image=nginx --replicas=1000
+kubectl apply -f deployment.yaml
+kubectl scale deployment demo-app --replicas=1
+
 
 kubectl get deploy -w
+
+kubectl get nodes -l aks-karpenter=burstable
 
 # Watch for new VMs created by Karpenter
 
@@ -34,7 +39,7 @@ kubectl get nodes -w
 
 # scaledown the deployment
 
-kubectl scale deployment nginx --replicas=0
+kubectl scale deployment demo-app --replicas=0
 
 # watch for VMs deletion
 
@@ -44,5 +49,5 @@ kubectl get events -A --field-selector source=karpenter -w
 
 
 #### Cleanup
-kubectl delete deployment nginx
+kubectl delete deployment demo-app
 kubectl delete -f .\nodepool-burstable.yaml

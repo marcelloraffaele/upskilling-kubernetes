@@ -11,6 +11,7 @@ az aks show --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --query "nodeP
 
 # get nodepools
 kubectl get NodePool -A
+kubectl get AKSNodeClass -A
 
 
 kubectl get NodePool default -n default -o yaml > export/default-nodepool.yaml
