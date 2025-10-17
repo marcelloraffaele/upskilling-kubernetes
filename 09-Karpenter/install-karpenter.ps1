@@ -18,4 +18,8 @@ kubectl get NodePool default -n default -o yaml > export/default-nodepool.yaml
 kubectl get NodePool system-surge -n default -o yaml > export/system-surge-nodepool.yaml
 
 # to disable karpenter
-#az aks update --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --disable-karpenter
+# first reset limits to 0 for all nodepools (default and system-surge)
+#kubectl patch nodepool default -n default --type merge -p '{"spec":{"limits":{"cpu":"0"}}}'
+#kubectl patch nodepool system-surge -n default --type merge -p '{"spec":{"limits":{"cpu":"0"}}}'
+#then run the command below to set the node provisioning mode back to Manual
+#az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --node-provisioning-mode Manual
