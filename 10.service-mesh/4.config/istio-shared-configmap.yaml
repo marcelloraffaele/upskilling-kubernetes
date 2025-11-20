@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: istio-shared-configmap-asm-1-26
+  namespace: aks-istio-system
+data:
+  mesh: |-
+    accessLogFile: /dev/stdout
+    defaultConfig:
+      holdApplicationUntilProxyStarts: true
