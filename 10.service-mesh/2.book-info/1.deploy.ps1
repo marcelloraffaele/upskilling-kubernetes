@@ -32,4 +32,4 @@ kubectl get all -n $NS
 #delete label
 kubectl label namespace $NS istio.io/rev- --overwrite
 
-kubectl delete -f https://raw.githubusercontent.com/istio/istio/release-1.24/samples/bookinfo/platform/kube/bookinfo.yaml
+kubectl delete -f https://raw.githubusercontent.com/istio/istio/release-1.28/samples/bookinfo/platform/kube/bookinfo.yaml

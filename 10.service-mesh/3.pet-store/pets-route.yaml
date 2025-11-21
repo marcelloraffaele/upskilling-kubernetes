@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: pets-route
+  namespace: pets
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - pets-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /petstore
+    route:
+    - destination:
+        host: store-front
+        port:
+          number: 80

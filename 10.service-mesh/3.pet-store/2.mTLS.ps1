@@ -1,0 +1,1 @@
+kubectl apply -n pets -f peer-authentication.yaml
