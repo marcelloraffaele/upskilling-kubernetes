@@ -23,5 +23,6 @@ kubectl apply -n $NS -f destination-rule.yaml
 
 
 #clear
+kubectl delete -n $NS -f destination-rule.yaml
 kubectl delete -n $NS -f .\virtual-service-base.yaml
 kubectl delete -n $NS -f gateway.yaml

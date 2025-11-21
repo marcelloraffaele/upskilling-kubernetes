@@ -29,7 +29,6 @@ az aks show --resource-group ${AKS_RESOURCE_GROUP} --name ${AKS_NAME}  --query '
 #[  "asm-1-26" ]
 # annotate the default namespace for automatic sidecar injection
 kubectl label namespace default istio.io/rev=asm-1-26
-kubectl label namespace default istio-injection=enabled --overwrite
 
 # trigger sidecar injection in default namespace
 #kubectl rollout restart -n <namespace> <deployment name>
