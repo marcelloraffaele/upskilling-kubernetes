@@ -17,8 +17,11 @@ kubectl get namespace $NS -o yaml | Select-String -Pattern "labels:" -Context 0,
 
 # trigger sidecar injection by restarting deployments
 kubectl rollout restart deployment -n $NS
+kubectl rollout restart statefulset -n $NS
 
 kubectl get all -n $NS
+
+kubectl describe po -l app=store-front -n pets
 
 # to check if sidecar is injected
 #kubectl describe pod -n $NS order-service-67468f6cb7-zcxkz

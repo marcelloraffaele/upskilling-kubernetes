@@ -1,6 +1,7 @@
 $NS="default"
 # install the Bookinfo application
-kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.24/samples/bookinfo/platform/kube/bookinfo.yaml
+kubectl apply -f https://raw.githubusercontent.com/istio/istio/release-1.28/samples/bookinfo/platform/kube/bookinfo.yaml
+
 
 kubectl get services
 
@@ -20,6 +21,9 @@ kubectl get namespace $NS -o yaml | Select-String -Pattern "labels:" -Context 0,
 
 # trigger sidecar injection in default namespace
 kubectl rollout restart -n default deployment
+
+kubectl get pod -n $NS
+kubectl get all -n $NS
 
 # to check if sidecar is injected
 #kubectl describe pod -n namespace <pod name>

@@ -36,3 +36,11 @@ kubectl label namespace default istio-injection=enabled --overwrite
 
 # to check if sidecar is injected
 #kubectl describe pod -n namespace <pod name>
+
+#
+#
+#
+# enable istio ingress gateway
+az aks mesh enable-ingress-gateway --resource-group $AKS_RESOURCE_GROUP --name $AKS_NAME --ingress-gateway-type external
+
+kubectl get svc aks-istio-ingressgateway-external -n aks-istio-ingress
