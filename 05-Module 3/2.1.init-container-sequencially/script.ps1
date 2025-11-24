@@ -10,9 +10,10 @@ kubectl apply -f 2.app-deployment.yaml -n $NS
 
 
 while ($true) { 
-    kubectl get pods -n $NS; 
+    kubectl get pods -n $NS;
+    Write-Output "CTRL+c to stop monitoring..." 
     Start-Sleep -Seconds 5
-    echo ""
+    Write-Output ""    
 }
 
 
