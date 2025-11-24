@@ -5,7 +5,7 @@ $LOCATION="italynorth"
 # [AKS node size recommendations](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
 $VM_SKU="Standard_B2s"
 $AKS_NAME="upskilling-aks"
-$NODE_COUNT="1"
+$NODE_COUNT="2"
 
 az group create --location $LOCATION `
     --resource-group $AKS_RESOURCE_GROUP
