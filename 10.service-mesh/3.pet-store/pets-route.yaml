@@ -5,13 +5,13 @@ metadata:
   namespace: pets
 spec:
   hosts:
-  - "*"
+  - "petstore.local"
   gateways:
   - pets-gateway
   http:
   - match:
     - uri:
-        prefix: /petstore
+        prefix: /
     route:
     - destination:
         host: store-front
