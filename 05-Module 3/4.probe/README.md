@@ -10,10 +10,13 @@ kubectl apply -n $NS -f 2-service.yaml
 #check
 kubectl get deploy,pod,svc -n $NS
 
+kubectl port-forward -n $NS service/frontend-service 8080:8080
+
 ```
 
 ```bash
 kubectl delete namespace $NS
 ```
 
-Other axamples at: https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+https://github.com/marcelloraffaele/hello
+

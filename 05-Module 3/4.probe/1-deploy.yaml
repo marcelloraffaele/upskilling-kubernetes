@@ -18,16 +18,16 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: nginx:latest
+          image: ghcr.io/marcelloraffaele/hello:health-probe
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           # The kubelet uses startup probes to know when a container application has started
           # Pings the port every 10 seconds.  
           # Retries it upto 30 times or until it succeeds
           startupProbe:
             httpGet:
-              path: /
-              port: 80
+              path: /started
+              port: 8080
             failureThreshold: 1
             periodSeconds: 15
           # The kubelet uses readiness probes to know when a container is ready to start accepting traffic. .
@@ -35,8 +35,9 @@ spec:
           # Pings the path every 5 seconds.
           # Retries it up 2 times or until it succeeds
           readinessProbe:
-            tcpSocket:
-              port: 80
+            httpGet:
+              path: /readiness
+              port: 8080
             failureThreshold: 2
             periodSeconds: 5
             initialDelaySeconds: 30
@@ -46,8 +47,8 @@ spec:
           # Restarts the containers if the ping ever fails (no retries)
           livenessProbe:
             httpGet:
-              path: /
-              port: 80
+              path: /liveness
+              port: 8080
             failureThreshold: 1
             periodSeconds: 5
             initialDelaySeconds: 15
