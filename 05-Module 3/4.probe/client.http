@@ -1,0 +1,27 @@
+
+curl -X POST http://localhost:8080/liveness/false
+
+###
+curl -X POST http://localhost:8080/liveness/true
+
+###
+curl -X GET http://localhost:8080/liveness
+
+###
+curl -X POST http://localhost:8080/readiness/false
+
+###
+curl -X POST http://localhost:8080/readiness/true
+
+###
+curl -X GET http://localhost:8080/readiness
+
+###
+curl -X POST http://localhost:8080/started/false
+
+
+###
+curl -X POST http://localhost:8080/started/true
+
+###
+curl -X GET http://localhost:8080/started
