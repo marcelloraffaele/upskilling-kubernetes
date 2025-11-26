@@ -4,7 +4,7 @@
 $NS = "daemonset-upskilling"
 kubectl create namespace $NS
 
-kubectl apply -n $NS -f 1.deamonset.yaml
+kubectl apply -n $NS -f 1.daemonset.yaml
 
 #check
 kubectl get deploy,pod,svc,daemonset -n $NS

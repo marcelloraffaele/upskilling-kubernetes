@@ -38,3 +38,4 @@ az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --enable-oid
 #kubectl config view
 #kubectl config get-contexts
 #kubectl config get-clusters
+#kubectl config current-context

@@ -24,7 +24,7 @@ Write-Host "External IP: $EXTERNAL_IP"
 
 
 # change the replica count to 1
-kubectl scale -n $NS deployment hello-deploy-v2 --replicas=5
+kubectl scale -n $NS deployment hello-deploy-v2 --replicas=10
 kubectl scale -n $NS deployment hello-deploy-v1 --replicas=0
 ```
 

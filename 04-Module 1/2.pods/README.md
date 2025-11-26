@@ -5,6 +5,10 @@ kubectl create namespace $NS
 kubectl apply -n $NS -f .\1.simple-pod.yaml
 
 kubectl get pods -n $NS nginx-pod
+kubectl get pods -n $NS nginx-pod -o yaml
+
+
+kubectl exec -n $NS -it nginx-pod -c nginx -- bash
 ```
 
 ```powershell
