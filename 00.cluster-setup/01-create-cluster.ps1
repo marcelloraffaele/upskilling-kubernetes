@@ -1,3 +1,6 @@
+#$TENANT_ID="...your-tenant-id..."
+#az login --tenant $TENANT_ID
+
 $AKS_RESOURCE_GROUP="upskilling-k8s-rg"
 $LOCATION="italynorth"
 # The minimal VM size recommended for AKS worker nodes is Standard_B2s, which provides 2 vCPUs and 4 GiB RAM;
