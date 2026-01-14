@@ -5,7 +5,7 @@ kubectl apply -f deployment.yaml -n $NS
 kubectl apply -f nodepool-basic.yaml
 
 
-
+kubectl get nodepool
 
 kubectl scale deployment -n $NS inflate --replicas 5
 

@@ -12,7 +12,7 @@ kubectl describe nodepool default
 
 kubectl get AKSNodeClass
 
-kubectl get AKSNodeClass default -n default -o yaml > export/default-aksnodeclass.yaml
+kubectl get AKSNodeClass default -n default -o yaml > default-aksnodeclass.yaml
 
 # Deploy Karpenter custom Nodepool
 

@@ -1,5 +1,8 @@
-$AKS_RESOURCE_GROUP="upskilling-k8s-rg"
-$AKS_NAME="upskilling-aks"
+$AKS_RESOURCE_GROUP="nap-demo-rg"
+$AKS_NAME="nap-demo-aks"
+
+az aks get-credentials --name $AKS_NAME `
+    --resource-group $AKS_RESOURCE_GROUP
 
 # enable karpenter in an existing cluster
 az aks update --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP --node-provisioning-mode Auto

@@ -41,7 +41,7 @@ The load generator is created with `replicas: 0` so it does nothing until you en
 Start generating traffic:
 
 ```bash
-kubectl scale deploy/load-generator -n hpa-demo --replicas=0
+kubectl scale deploy/load-generator -n hpa-demo --replicas=1
 ```
 
 ## What to watch / check
