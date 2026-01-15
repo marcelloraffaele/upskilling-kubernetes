@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-headless
+  namespace: statefulset-demo
+  labels:
+    app: nginx
+spec:
+  clusterIP: None
+  publishNotReadyAddresses: true
+  selector:
+    app: nginx
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: statefulset-demo
+  labels:
+    app: nginx
+spec:
+  type: ClusterIP
+  selector:
+    app: nginx
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+  namespace: statefulset-demo
+  labels:
+    app: nginx
+spec:
+  serviceName: nginx-headless
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      terminationGracePeriodSeconds: 10
+      initContainers:
+        - name: init-web
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - |
+              set -eu
+              if [ ! -f /usr/share/nginx/html/index.html ]; then
+                echo "Hello from $(hostname)" > /usr/share/nginx/html/index.html
+                echo "PVC: /usr/share/nginx/html (per-pod)" >> /usr/share/nginx/html/index.html
+              fi
+              echo "Last init at: $(date -u)" > /usr/share/nginx/html/last-init.txt
+          volumeMounts:
+            - name: www
+              mountPath: /usr/share/nginx/html
+      containers:
+        - name: nginx
+          image: nginx:1.25-alpine
+          ports:
+            - name: http
+              containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          volumeMounts:
+            - name: www
+              mountPath: /usr/share/nginx/html
+  volumeClaimTemplates:
+    - metadata:
+        name: www
+        labels:
+          app: nginx
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
