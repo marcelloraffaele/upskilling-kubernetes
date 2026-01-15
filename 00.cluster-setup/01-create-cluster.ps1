@@ -6,7 +6,7 @@ $LOCATION="italynorth"
 # The minimal VM size recommended for AKS worker nodes is Standard_B2s, which provides 2 vCPUs and 4 GiB RAM;
 # For production AKS clusters, the recommended VM sizes is at least 2 vCPUs and 8 GiB RAM, such as Standard_D2s_v3 or Standard_DS2_v2.
 # [AKS node size recommendations](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
-$VM_SKU="Standard_B2s"
+$VM_SKU="Standard_B2s" #Standard_D2as_v5
 $AKS_NAME="upskilling-aks"
 $NODE_COUNT="2"
 
