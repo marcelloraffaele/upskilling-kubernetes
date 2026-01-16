@@ -1,0 +1,36 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  annotations:
+    gateway.networking.k8s.io/generator: ingress2gateway-0.5.0
+  name: nginx
+spec:
+  gatewayClassName: nginx
+  listeners:
+  - hostname: example.local
+    name: example-local-http
+    port: 80
+    protocol: HTTP
+status: {}
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  annotations:
+    gateway.networking.k8s.io/generator: ingress2gateway-0.5.0
+  name: frontend-ingress-example-local
+spec:
+  hostnames:
+  - example.local
+  parentRefs:
+  - name: nginx
+  rules:
+  - backendRefs:
+    - name: frontend-service
+      port: 8080
+    matches:
+    - path:
+        type: PathPrefix
+        value: /
+status:
+  parents: []
