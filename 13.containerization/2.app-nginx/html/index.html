@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La Bella Italia – Restaurant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-brand">🍝 La Bella Italia</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle">☰</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Welcome to La Bella Italia</h1>
+      <p>Authentic Italian cuisine crafted with passion and the finest ingredients.</p>
+      <a href="#menu" class="btn">Explore Our Menu</a>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section class="section" id="menu">
+    <h2 class="section-title">Our Menu</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="starter">Starters</button>
+      <button class="filter-btn" data-filter="main">Main Course</button>
+      <button class="filter-btn" data-filter="dessert">Desserts</button>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <!-- About -->
+  <section class="section about" id="about">
+    <div class="about-content">
+      <div class="about-text">
+        <h2>Our Story</h2>
+        <p>
+          Founded in 1985 by the Rossi family, La Bella Italia has been serving
+          authentic Neapolitan recipes passed down through generations. Every dish
+          is prepared fresh daily using imported Italian produce and old-world techniques.
+        </p>
+        <p>
+          Our chefs trained in Naples and bring genuine flavour and warmth to every plate.
+          Come dine with us and feel the passion in every bite.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-number" data-target="35">0</span><p>Years of Excellence</p></div>
+        <div class="stat"><span class="stat-number" data-target="120">0</span><p>Menu Items</p></div>
+        <div class="stat"><span class="stat-number" data-target="5000">0</span><p>Happy Guests / Month</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <h2 class="section-title">Reserve a Table</h2>
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <input type="text" id="nameInput" placeholder="Your Name" required />
+        <input type="email" id="emailInput" placeholder="Email Address" required />
+      </div>
+      <div class="form-row">
+        <input type="date" id="dateInput" required />
+        <select id="guestsInput">
+          <option value="">Number of guests</option>
+          <option>1</option><option>2</option><option>3</option>
+          <option>4</option><option>5</option><option>6+</option>
+        </select>
+      </div>
+      <textarea id="messageInput" placeholder="Special requests..."></textarea>
+      <button type="submit" class="btn">Book Now</button>
+      <p class="form-feedback" id="formFeedback"></p>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>📍 Via Roma 42, Naples, Italy &nbsp;|&nbsp; 📞 +39 081 123 4567 &nbsp;|&nbsp; ✉️ hello@labellaitaliarestaurant.com</p>
+    <p>&copy; <span id="year"></span> La Bella Italia. All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
