@@ -143,3 +143,14 @@ spec:
 - Non-root = smaller blast radius on compromise
 - Required for Kubernetes security hardening and compliance
 - Easy to implement with `adduser` + `USER` + `--chown`
+
+
+### build
+```bash
+docker build -t node-rootless-demo:1.0 .
+```
+
+### run
+```bash
+docker run -it -p 3000:3000 --name node-rootless-demo node-rootless-demo:1.0
+```
