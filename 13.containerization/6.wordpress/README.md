@@ -7,6 +7,7 @@ docker run -d \
   -e MYSQL_DATABASE=exampledb \
   -e MYSQL_USER=exampleuser \
   -e MYSQL_PASSWORD=examplepass \
+  -v db_data:/var/lib/mysql \
   mysql:5.6
 
 ```
