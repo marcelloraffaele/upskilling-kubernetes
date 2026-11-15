@@ -1,14 +1,18 @@
+# The minimal VM size recommended for AKS worker nodes is Standard_B2s, which provides 2 vCPUs and 4 GiB RAM;
+# For production AKS clusters, the recommended VM sizes is at least 2 vCPUs and 8 GiB RAM, such as Standard_D2s_v3 or Standard_DS2_v2.
+# [AKS node size recommendations](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
+
 #$TENANT_ID="...your-tenant-id..."
 #az login --tenant $TENANT_ID
 
 $AKS_RESOURCE_GROUP="upskilling-k8s-rg"
-$LOCATION="italynorth"
-# The minimal VM size recommended for AKS worker nodes is Standard_B2s, which provides 2 vCPUs and 4 GiB RAM;
-# For production AKS clusters, the recommended VM sizes is at least 2 vCPUs and 8 GiB RAM, such as Standard_D2s_v3 or Standard_DS2_v2.
-# [AKS node size recommendations](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
-$VM_SKU="Standard_B2s" #Standard_D2as_v5
+$LOCATION="swedencentral"
+$VM_SKU="Standard_D2ads_v7"
 $AKS_NAME="upskilling-aks"
 $NODE_COUNT="2"
+
+# be sure the vm sku is available in the selected location
+#az vm list-skus --location $LOCATION --size Standard_B --all --output table > B.available.swedencentral.txt
 
 az group create --location $LOCATION `
     --resource-group $AKS_RESOURCE_GROUP
@@ -18,12 +22,13 @@ az aks create --node-count $NODE_COUNT `
     --node-vm-size $VM_SKU `
     --name $AKS_NAME `
     --resource-group $AKS_RESOURCE_GROUP
+#    --ssh-access disabled
 
 az aks get-credentials --name $AKS_NAME `
     --resource-group $AKS_RESOURCE_GROUP
 
 # create an Azure Container Registry (ACR) to store container images
-$ACR_NAME="acrupskilling"
+$ACR_NAME="upskillingk8sacr"
 az acr create --resource-group $AKS_RESOURCE_GROUP `
     --name $ACR_NAME `
     --sku Basic
